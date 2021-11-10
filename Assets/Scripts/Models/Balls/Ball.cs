@@ -47,9 +47,6 @@ namespace BallsGame.Models.Balls {
         }
 
         public void Update(IPlayer player) {
-            if (State == BallState.IsRun) {
-                Position = _mover.GetNextPostion(this, Time.deltaTime);
-            }
             switch (State) {
                 case BallState.IsRun:
                     Position = _mover.GetNextPostion(this, Time.deltaTime);
