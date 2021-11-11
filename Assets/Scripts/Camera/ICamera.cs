@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace BallsGame.GameCamera { 
 	public interface ICamera {
+		Vector3 Position { get; }
 		/// <summary>
 		/// Return world projection for screen point in (0.5, 1) by screenSpace
 		/// </summary>

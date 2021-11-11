@@ -16,7 +16,7 @@ namespace BallsGame.Models.Balls {
         int Damage { get; }
         void ToStart();
         void Kill();
-        void Update(IPlayer player);
+        void Update(IPlayer player, float deltaTime);
         void Restart();
     }
 }

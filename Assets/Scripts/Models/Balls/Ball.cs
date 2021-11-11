@@ -13,7 +13,7 @@ namespace BallsGame.Models.Balls {
 
         private IBallMover _mover;
         private BallSetupCreator _setupCreator;
-        private PositionChanger _positionChanger;
+        private StartPositionCreator _positionChanger;
         private IDeadZone _deadZone;
 
         public BallState State { get; private set; }
@@ -24,7 +24,7 @@ namespace BallsGame.Models.Balls {
         public Color Color { get; private set; }
         public int Damage { get; private set; }
 
-        public Ball(IBallMover ballMover, PositionChanger positionChanger, IDeadZone deadZone, BallSetupCreator setupCreator) {
+        public Ball(IBallMover ballMover, StartPositionCreator positionChanger, IDeadZone deadZone, BallSetupCreator setupCreator) {
             _mover = ballMover;
             _deadZone = deadZone;
             _setupCreator = setupCreator;
@@ -46,11 +46,11 @@ namespace BallsGame.Models.Balls {
             State = BallState.IsRun;
         }
 
-        public void Update(IPlayer player) {
+        public void Update(IPlayer player, float deltaTime) {
             switch (State) {
                 case BallState.IsRun:
-                    Position = _mover.GetNextPostion(this, Time.deltaTime);
-                    if (InDeadZone()) {
+                    Position = _mover.GetNextPostion(this, deltaTime);
+                    if (_deadZone.IsBallInside(this)) {
                         Blast(player);
                     }
                     break;
@@ -62,11 +62,6 @@ namespace BallsGame.Models.Balls {
                 default:
                     break;
             }
-        }
-
-        private bool InDeadZone() {
-            var topPoint = Position.y + .5 * Size;
-            return _deadZone.Position.y > topPoint;
         }
 
         public void Kill() {

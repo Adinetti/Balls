@@ -2,14 +2,14 @@ using UnityEngine;
 using BallsGame.GameCamera;
 
 namespace BallsGame { 
-	public class PositionChanger {
+	public class StartPositionCreator {
         private const float OFFSET = 0.1f;
 
         private Vector3 _defaultPosition;
         private ICamera _camera;
         private float _offsetZ;
 
-        public PositionChanger(Vector3 defaultPosition, ICamera camera) {
+        public StartPositionCreator(Vector3 defaultPosition, ICamera camera) {
             _defaultPosition = defaultPosition;
             _camera = camera;
         }

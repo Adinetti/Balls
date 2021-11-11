@@ -46,7 +46,7 @@ namespace BallsGame.Views {
         }
 
         private void UpdatePosition() {
-            Model.Update(_stateManager.Player);
+            Model.Update(_stateManager.Player, Time.deltaTime);
             transform.position = Model.Position;
         }
 

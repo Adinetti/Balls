@@ -8,6 +8,8 @@ namespace BallsGame.GameCamera {
         private Vector2Int resolution;
         private Camera _camera;
 
+        public Vector3 Position => _camera.transform.position;
+
         public Vector3 CenterTopPoint {
             get {
                 if (resolution.x == Screen.width && resolution.y == Screen.height) {

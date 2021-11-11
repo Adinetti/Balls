@@ -15,7 +15,7 @@ namespace BallsGame.Views {
         private List<Ball> _ballBuffer;
         private IDeadZone _deadZone;
         private BallSetupCreator _setupCreator;
-        private PositionChanger _positionChanger;
+        private StartPositionCreator _positionChanger;
 
         private void Awake() {
             _stateManager = transform.root.GetComponent<GameStateManager>();
@@ -45,7 +45,7 @@ namespace BallsGame.Views {
             var position = _camera.CenterTopPoint;
             position.y += _ballSetup.size.max;
             transform.position = position;
-            _positionChanger = new PositionChanger(transform.position, _camera);
+            _positionChanger = new StartPositionCreator(transform.position, _camera);
         }
 
         private void Restart() {
